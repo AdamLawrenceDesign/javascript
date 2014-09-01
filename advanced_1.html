@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>advanced javascritp | lession 1 </title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js?v1.0"></script>
+
+</head>
+
+<body>
+
+	<script>
+    	
+		//==================== Plain If Else
+		
+		var behaviour, toy, monkey_behaviour;
+		
+		behaviour = 'good';
+		
+		if( behaviour == "good"){
+			toy = 'videogames';
+		} else  {
+			toy = 'rocks';
+		}
+		
+		console.log(toy)
+		
+		// =================== Conditional Operator 
+		
+		monkey_behaviour = 'bad';
+		
+		toy = (monkey_behaviour == 'good') ? 'videogames':'rocks';
+		
+		console.log(toy)
+		
+		// =================== Conditional Operators used for password
+		// Global 
+		/*
+		var password, answer;
+		
+		password = 'open sesame';
+		answer = prompt('Whats the password??', '');
+		
+		if(answer == password){
+			alert('Welcome');
+		} else {
+			alert('Get fucked');
+		}
+		*/
+		// =================== Convert Temperature
+		/*
+		function fahrenToCelsius(faren){
+			var temp = (faren - 32) * 5/9; 
+			return temp;
+		}
+		
+		function convertTemp(){
+			var temp = prompt('what temperature fahrenheit?','50');
+			var celsius = fahrenToCelsius(temp);
+			alert(temp + ' degrees Fahrenheit is ' + celsius + ' degrees Celsius.');
+		}
+		
+		convertTemp()
+		*/
+		// =================== Catch and throw statements 
+		/*
+		function ourError(message) {
+			this.name = 'OurError';
+			this.message = message || 'Default Message Used When No Message passed';
+		};
+		
+		// Inherit from protoype
+		ourError.prototype = new Error();
+		ourError.prototype.contructor = ourError;
+    
+    	try {
+			throw new ourError();
+		} catch(e) {
+			alert('Our Error: ' + e.name + ' Message:' + ' e.message');
+		} finally {
+			alert('A finally statement will always be executed');
+		}
+		*/
+		
+		// =================== Object tutorial
+		/*
+		var objectName = new Object;
+		objectName.someProperty = someValue;
+		*/
+		var homeOwner = new Object();
+		homeOwner.firstName = 'Teddy';
+		homeOwner.surname = 'Bear';
+		homeOwner.temp = 'Temp item to delete';
+		
+		console.log('The first variable is ' + homeOwner.firstName + ' and the second variable ' + homeOwner.surname)
+		
+		delete homeOwner.temp;
+		
+		console.log(homeOwner.temp);
+		
+		var anAddress = new Object();
+		anAddress.number = 12;
+		anAddress.street = 'Pitt Street';
+		anAddress.town = 'Wollongong';
+		
+		//anAddress.owner = homeOwner;
+		
+		homeOwner.address = anAddress;
+		
+		console.log(homeOwner.address);
+		
+	
+    </script>
+
+</body>
+</html>

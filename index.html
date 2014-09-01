@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>advanced javascript | tutorial</title>
+    
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js?v1.0"></script>
+    
+    <style>
+		.note {
+			color:red;
+			padding:1em;
+			background:#CCC;
+			border:1px solid red;
+		}
+		
+	</style>
+    
+    
+</head>
+
+<body>
+
+	<h1>hello world</h1>
+	<p>Sample Text</p>
+    <a href="#">Link Reference</a><br/>
+    <span id="element_1">Element 1</span><br/>
+    <span class="text">Test 1</span><br/>
+    <span class="text">Test 2</span><br/>
+    <span class="text">Test 3</span><br/>
+	<button id="big-button">Button</button>
+    
+    
+	<script type="text/javascript">
+	
+    	//=====================//							//====== the DOM document oject model DOM TREE
+		
+		var get_id 	= document.getElementById('element_1');
+		var page_title = document.querySelector('#element_1');
+		var text = document.querySelectorAll('.text');
+	
+		// get_id.style.color = 'blue';
+		//get_tag.style.color = "blue";
+		
+		//=============================================================================================================//
+	
+    	//=====================//							//====== the DOM document oject model DOM TREE
+		
+		var handleClick = function(event){
+			console.log('hell fuck yeah');
+		}
+		
+		var button = document.querySelector('#big-button');
+		button.addEventListener('click', handleClick);		// addEventListener does not work in IE 8
+		
+		//=============================================================================================================//
+		
+    	//=====================//							//====== Objects
+		
+		// Javascript uses prototypal inheritance objects inherits from parent object the parent element is known as the childs prototype
+		// every object inherits from gloabal object 
+		// to achieve inheritance in javascript - the most common method is the constructor pattern, constructors are usin in
+		// combination witht the new keyword to creat objects. 
+		
+		// Example of a constructor pattern
+		
+		var person = function(given,surname){
+			this.given = given;
+			this.surname = surname;
+		}
+		
+		// var tom = new person('tom');											// Step 1 show that you have created an object
+		// console.log(tom);
+		
+		person.prototype.say = function(words){									// Prototype = childs parent element
+			console.log(this.given + ' ' + this.surname + ' says "' + words + '"');
+		}
+		
+		var quote = new person('Adam','Lawrence');
+		
+		quote.say('Hell Fuck Yeah');
+		
+		// === Do more research on this Inheritance and object-oriented Programming
+		
+		
+		//=============================================================================================================//
+		
+		
+    	//=====================//							//====== Creating Elements
+		// 
+		
+		var div = document.createElement('div');
+		div.textContent = 'Hell Fuck Yeah';
+		div.setAttribute('class','note');
+		document.body.appendChild(div);
+		
+		var span = document.createElement('span');
+		span.textContent = " Motherfucker";
+		div.appendChild(span);
+		
+		
+    
+    </script>
+
+</body>
+</html>

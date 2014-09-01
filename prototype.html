@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Prototype | tutorial</title>
+</head>
+
+<body>
+
+	
+	
+
+	<script type="text/javascript">
+	
+		//=============================================================================================================//
+    	//=====================//							//====== Objects
+		
+		var person = function(given,surname){
+			this.given = given;
+			this.surname = surname;
+		}
+		
+		person.prototype.say = function(quote){									// Prototype = childs parent element
+			var span = document.createElement('span');
+			span.textContent = this.given + ' ' + this.surname + ' says "' + quote + '"';
+			//div.setAttribute('class','note');									// Add class to object for style	
+			document.body.appendChild(span);
+		}
+		
+		var quote = new person('Will','Smith');
+		quote.say('whats up');
+	
+		//=============================================================================================================//
+    	//=====================//							//====== Objects
+		
+		var myObject = function(name){
+			this.name = name;
+			return this;
+		}
+		
+		console.log(typeof myObject.prototype);
+		
+		myObject.prototype.getName = function(){
+			return this.name;
+		}
+		
+		// every object hasa secrret property known as _proto_ 
+		// a function has its own properties (length and arguments) and  methods (call & apply)
+		// Sample of code that is in the javascript engine 
+				
+		Function.prototype = {											// this is similar to the automatic code added to the _proto_ var function 
+			arguments : null,											// As a default		
+			length: 0 ,
+			call : function(){
+				// secret code
+			},
+			apply: function(){
+				// secret code
+			}
+			//
+		}
+		
+		console.log(myObject.length);									// 1 
+		console.log(myObject instanceof Function);						// true 
+		console.log(myObject === Function);								// false
+		console.log(myObject.__proto__ === Function.prototype);			// true
+		
+		var myInstance = new myObject("foo");							
+		console.log(myInstance.__proto__ === myObject.prototype);		// true
+		
+		console.log(myInstance.getName());								// foo
+		
+		//===============================================================================//
+		//===== 		Old way of writing javscript
+		/*
+		var GameObject1 = {
+			x: Math.floor((Math.random() * myCanvasWidth) + 1),
+			y: Math.floor((Math.random() * myCanvasHeight) + 1),
+			width: 10,
+			height: 10,
+			draw: function(){
+				myCanvasContext.fillRect(this.x, this.y, this.width, this.height);
+			}
+		  //  ...
+		};
+			
+		var GameObject2 = {
+			x: Math.floor((Math.random() * myCanvasWidth) + 1),
+			y: Math.floor((Math.random() * myCanvasHeight) + 1),
+			width: 10,
+			height: 10,
+			draw: function(){
+				myCanvasContext.fillRect(this.x, this.y, this.width, this.height);
+			}
+			// ...
+		};
+		*/
+		//===== x and y undefined unsure how to fix
+		
+		//===============================================================================//
+		//===== 	 Correct way using prototype
+		
+		// define the GameObject constructor function
+		var GameObject = function(width, height) {
+			this.x = Math.floor((Math.random() * 300) + 1);
+			this.y = Math.floor((Math.random() * 300) + 1);
+			this.width = width;
+			this.height = height;
+			return this;
+		};
+		 
+		// (re)define the GameObject prototype object
+		GameObject.prototype = {
+			x: 0,
+			y: 0,
+			width: 5,
+			width: 5,
+			draw: function() {
+				myCanvasContext.fillRect(this.x, this.y, this.width, this.height);
+			}
+		};		
+		
+		var x = 100,
+		arrayOfGameObjects = [];
+		 
+		do {
+			arrayOfGameObjects.push(new GameObject(10, 10));
+		} while(x--);		
+
+
+
+
+
+	</script>
+
+</body>
+</html>

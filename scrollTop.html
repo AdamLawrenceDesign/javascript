@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>advanced javascript | Scroll Top</title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js?v1.0"></script>
+	
+    <style>
+		
+		a, #toTop {
+			cursor:pointer;
+			color:#333;
+			text-decoration:none;
+			font-family:Verdana, Geneva, sans-serif
+		}
+		
+		a:hover {
+			cursor:pointer;
+			color:#999;
+		}
+		
+		div {
+			height:700px;
+			width:100%;
+			position:relative;
+		}
+		
+		#links {
+			height:auto;
+			position:fixed;
+			top:1em;
+			left:1em;
+			padding:1em auto}
+			
+			#links ul {
+				margin:0;
+				padding:0;
+			}
+			#links ul li{
+				position:relative;
+				text-transform:capitalize;
+				padding-right:1em;
+				display:inline-block
+			}
+		
+		#red {
+			background:red	}
+	
+		#green {
+			background:green }
+		
+		#blue {
+			background:blue	}
+			
+		#yellow {
+			background:yellow }	
+			
+			
+		#toTop {
+			position:fixed;
+			display:inline-block;
+			right:1em;
+			bottom:1em;
+		}	
+	
+	</style>
+    		
+    <script>
+    	
+		$(document).ready(function() {
+			
+			$('a').click(function(e){
+				e.preventDefault();
+				
+				var target	= $(this).attr('href'),
+					id 		= '#' + target,
+					offset 	= $(id).offset();
+				// $(window).scrollTop(offset.top);
+				$('html, body').animate({scrollTop:offset.top},'slow');
+				
+			});
+			
+			$('#toTop').click(function(e){
+				e.preventDefault();
+				
+				$('html, body').animate({scrollTop:0},'slow');
+			});
+			
+			
+        });
+    
+    </script>
+    
+</head>
+
+<body>
+    
+    <div id="red"></div>	
+    <div id="green"></div>	
+    <div id="blue"></div>	
+    <div id="yellow"></div>	
+	<div></div>
+    <div id="links">
+    	<ul>
+        	<li><a href="red">Red</a></li>
+        	<li><a href="green">Green</a></li>
+        	<li><a href="blue">Blue</a></li>
+        	<li><a href="yellow">Yellow</a></li>
+        </ul>
+    </div>
+
+    <span id="toTop">To Top</span>
+
+</body>
+</html>

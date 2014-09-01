@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Object Orientated | Programming</title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js?v1.0"></script>
+
+</head>
+
+<body>
+	
+    <label>Name</label>
+	<input id="name" type="text" value="" />
+    <label>Phone</label>
+	<input id="phone" type="text" value="" />
+    <button type="button">Submit</button>
+	
+
+	<script type="text/javascript">
+		
+		var myApp = myApp || {};
+		    
+		myApp.event == {};
+		
+		myApp.commonMethod = {
+			regExForName: '', // define regex for name validation
+			regExForPhone: '', // Define regex for phone
+			validation: function(name){
+				// Do something with name access regExForName variable
+				// Using 'this.regExForName'			
+			},
+			
+			validatePhoneNo: function(phoneNo){
+				// do something with phone number using regExForPhone
+			}
+		}
+		
+		myApp.event = {
+			addListener: function(el,type,fn){
+				// code here wtf
+			},
+			removeListener: function(el,type,fn){
+				// code
+			},
+			getEvent:function(e){
+				// code
+			}
+			// Add more methods and properties			
+		}
+		
+		myApp.event.addListener('yourel','type');// Call back event
+		
+		var yourel = function(){
+			$('button').click(function(){
+				console.log('yourel')
+			});
+		}
+		
+		
+		console.log()
+			
+    
+    </script>
+
+</body>
+</html>

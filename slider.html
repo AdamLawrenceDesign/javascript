@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Dragging Object </title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js?v1.0"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+    
+	<style>
+		
+		* {
+			-webkit-box-sizing: border-box;														/* ========= tried applying to all but caused problems with clearfix ========= */
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		
+		body {
+			padding:10%;
+		}
+		
+		#wrapper {
+			width:100%;
+			height:500px;
+			position:relative;
+			border:1px dotted #ddd;
+			background:#333;
+		}
+			.object_ct{
+				display:inline-block;
+				top:0;
+				left:0;
+				position:absolute;
+				cursor:move;
+			}
+		
+			.container_1 {
+				position:absolute;
+				top:0;
+				left:0;
+				border:1px solid red;
+				height:100%;
+				width:33%;
+				overflow:hidden;
+			}
+				.container_1 .object_ct {
+					width:100%
+				}
+				.container_1 .object_img {
+					width:100%;
+				}
+			
+			.container_2 {
+				position:absolute;
+				top:0;
+				left:33%;
+				border:1px solid green;
+				height:50%;
+				width:67%;
+				overflow:hidden;
+			}
+				.container_2 .object_ct {
+					height:100%;
+					position:absolute;
+				}
+				.container_2 .object_img {
+					height:100%;
+				}
+				
+				
+			.container_3 {
+				position:absolute;
+				top:50%;
+				left:33%;
+				border:1px dotted blue;
+				height:50%;
+				width:67%;
+				overflow:hidden;
+			}
+				.container_3 .object_ct {
+					display:inline-block;
+					top:0;
+					left:0;
+					height:100%;
+					position:absolute;
+				}
+				.container_3 .object_img {
+					height:100%;
+				}
+			
+			
+			
+    </style>
+    
+</head>
+
+<body>
+	
+    <div id="wrapper">
+        <div class="container_1">
+        	<div class="object_ct">
+                <img class="object_img" src="img/2.jpg" />
+            </div>
+        </div>
+        <div class="container_2">
+        	<div class="object_ct">
+                <img class="object_img" src="img/3.jpg" />
+            </div>
+        </div>
+        <div class="container_3">
+        	<div class="object_ct">
+                <img class="object_img" src="img/4.jpg" />
+            </div>
+        </div>
+    </div>
+
+	<script>
+	
+		$(document).ready(function(){
+			$('.object_1').slider();
+			$('.object_2').slider();
+			
+			
+			$('.object_ct').draggable();
+			$('.object_img').resizable({aspectRatio: 3 / 2});
+			
+		});
+	
+		$.fn.slider = function(){
+			return this.each(function(){
+				var $el = $(this),
+					dragging = false,
+					startY = 0,
+					startT = 0,
+					startX = 0,
+					startL = 0;
+					
+				$el.css({'top':0,'left':0});
+				
+				$el.mousedown(function(ev){
+					dragging = true;
+					startY = ev.clientY;
+					startT = $el.css('top');
+					startX = ev.clientX;
+					startL = $el.css('left');
+				});
+				
+				$(window).mousemove(function(ev){
+					if(dragging){
+						// Calculate Position
+						var newTop = parseInt(startT) + (ev.clientY - startY);
+						var newLeft = parseInt(startL) + (ev.clientX - startX);
+						// Stay in parent
+						var maxTop = $el.parent().height() - $el.height();
+						var maxLeft = $el.parent().width() - $el.width();
+						
+						//newTop = newTop < 0 ? 0:newTop > maxTop ? maxTop:newTop;
+						//newLeft = newLeft < 0 ? 0:newLeft > maxLeft ? maxLeft:newLeft;
+						
+						$el.css({'top':newTop,'left': newLeft});
+					}
+				}).mouseup(function(){
+					dragging = false;
+				});
+				
+				
+				
+			});
+		}
+		
+		
+		
+    </script>
+
+</body>
+</html>

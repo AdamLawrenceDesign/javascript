@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>advanced javascript | tutorial</title>
+    
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js?v1.0"></script>
+    
+    
+    
+</head>
+
+<body>
+
+    <button id="button" value="click">Click this</button>
+    <button id="button2" value="click">Click this 2</button>
+    
+	<script type="text/javascript">
+	
+    	//=====================//							//====== Binding 
+		
+		var user_1 = {
+			data: 	[
+				{name: 'Charles Woods', age: 37}
+			],
+			clickHandler:function(event){
+				var randomNum = ((Math.random () * 2 | 0) + 1) -1 ;
+				//alert(this.data[0].name)
+				$('#button').val(this.data[randomNum].name + ' ' + this.data[randomNum].age);
+				console.log($('#button').val())
+			}
+		}
+		
+		$('#button').click(user_1.clickHandler.bind(user_1));
+		
+		//===================== // 							// Example 2
+		
+		var data = [
+			{name: 'Sammantha' , age: 12},
+			{name: 'Alexis' , age: 16}
+		]
+		
+		var user = {
+			data: 	[
+				{name: 'James Woods', age : 37},
+				{name: 'Peter Nickle', age : 49}
+			],
+			showData:function(event){
+				var randomNum = ((Math.random () * 2 | 0) + 1) -1;
+				console.log(this.data[randomNum].name + ' ' + this.data[randomNum].age);
+			}
+		}
+		
+		$('#button2').click(user.showData.bind(user));
+		
+		console.log(user)
+		
+		var showDataVar = user.showData.bind(user);
+		showDataVar();
+		
+		//===================== // 							// Example 3 === Binding Functions to other variables 
+		
+		var cars = {
+			data: [
+				{name: 'Honda', age: 14},
+				{name: 'Holden', age:22}
+			]
+		}
+		
+		cars.showData = user.showData.bind(cars);			// Important This uses the function from user to show the car type
+		cars.showData();
+		
+		//===================== // 							// Example 4
+		
+		function greet(gender,age,name){
+			var salutation = gender === "male" ? "Mr " : "Ms ";
+			
+			if(age > 18){
+				return 'Hello, ' + salutation + name + '.';
+			} else {
+				return 'Hey, ' + name + '.';	
+			}
+			
+		}
+		
+		console.log(greet("male",15,'D*$!Cheese'));			// Important This A number of rules applied to each variable
+		
+		var greetAdult = greet.bind(null,'male',45);
+		var greetChild = greet.bind(null,'',17);
+		
+		console.log(greetAdult('John Cusack'));
+		
+		// === up to this section 
+		// ==== JavaScript's Apply and Call Methods
+    
+		
+		
+	
+	
+    </script>
+
+</body>
+</html>
